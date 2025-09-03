@@ -1,0 +1,1 @@
+export const fallbackImage = "https://img.icons8.com/?size=100&id=5sqdB1H0EaPY&format=png&color=000000"

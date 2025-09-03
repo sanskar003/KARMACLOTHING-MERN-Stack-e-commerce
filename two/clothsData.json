@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Cotton Polo T-Shirt",
+    "description": "Breathable cotton polo with ribbed collar and sleeve cuffs.",
+    "size": ["S", "M", "L", "XL"],
+    "discount": 20,
+    "category": "Shirts",
+    "images": [
+      "https://m.media-amazon.com/images/I/71HtI1HO8KL._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/81jFWPhO4uL._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/71Sz+pMkAeL._SX569_.jpg"
+    ],
+    "rating": 4.1,
+    "price": 899,
+    "stock": 70,
+    "tags": ["polo", "casual", "cotton", "mensware"]
+  },
+  {
+    "name": "Slim Fit Jeans",
+    "description": "Stretchable slim-fit jeans with faded wash and five pockets.",
+    "size": ["30", "32", "34", "36"],
+    "discount": 17,
+    "category": "Bottoms",
+    "images": [
+      "https://m.media-amazon.com/images/I/61CDsvdNPkL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/81-hYfrS1-L._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61eXZdXG5IL._SX679_.jpg"
+    ],
+    "rating": 4.5,
+    "price": 1599,
+    "stock": 45,
+    "tags": ["jeans", "denim", "slim-fit", "mensware"]
+  },
+  {
+    "name": "Canvas Sneakers",
+    "description": "Low-top canvas sneakers with cushioned sole and lace-up closure.",
+    "size": ["7", "8", "9", "10", "11"],
+    "discount": 10,
+    "category": "Footwear",
+    "images": [
+      "https://m.media-amazon.com/images/I/61AaskCa+0L._SY695_.jpg",
+      "https://m.media-amazon.com/images/I/71wEcXG5mfL._SY695_.jpg",
+      "https://m.media-amazon.com/images/I/8184Is1cC3L._SY695_.jpg"
+    ],
+    "rating": 4.3,
+    "price": 1299,
+    "stock": 80,
+    "tags": ["sneakers", "canvas", "casual", "mensware"]
+  },
+  {
+    "name": "Windbreaker Jacket",
+    "description": "Lightweight windbreaker with water-resistant shell and zip pockets.",
+    "size": ["M", "L", "XL"],
+    "discount": 22,
+    "category": "Outerwear",
+    "images": [
+      "https://m.media-amazon.com/images/I/61+vlw4aZaL._SY741_.jpg",
+      "https://m.media-amazon.com/images/I/71kYF44mbgL._SY741_.jpg",
+      "https://m.media-amazon.com/images/I/81jBS7Hzu+L._SY741_.jpg"
+    ],
+    "rating": 4.6,
+    "price": 2199,
+    "stock": 30,
+    "tags": ["windbreaker", "lightweight", "mensware", "outdoor"]
+  },
+  {
+    "name": "Printed Casual Shirt",
+    "description": "All-over printed shirt with short sleeves and relaxed fit.",
+    "size": ["S", "M", "L", "XL"],
+    "discount": 19,
+    "category": "Shirts",
+    "images": [
+      "https://m.media-amazon.com/images/I/51oUgKc8YlL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51wPxeFPcwL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51qWnI1YmvL._SX679_.jpg"
+    ],
+    "rating": 4.0,
+    "price": 1099,
+    "stock": 65,
+    "tags": ["printed", "casual", "short-sleeve", "mensware"]
+  },
+  {
+    "name": "Cargo Shorts",
+    "description": "Utility cargo shorts with multiple pockets and adjustable waistband.",
+    "size": ["30", "32", "34", "36"],
+    "discount": 16,
+    "category": "Bottoms",
+    "images": [
+      "https://m.media-amazon.com/images/I/612rtMZ6G5L._SY879_.jpg",
+      "https://m.media-amazon.com/images/I/71hzFL9OjsL._SY741_.jpg",
+      "https://m.media-amazon.com/images/I/71hzFL9OjsL._SY741_.jpg"
+    ],
+    "rating": 4.4,
+    "price": 1199,
+    "stock": 50,
+    "tags": ["cargo", "shorts", "utility", "mensware"]
+  },
+  {
+    "name": "Formal Blazer",
+    "description": "Single-breasted formal blazer with structured shoulders and inner lining.",
+    "size": ["M", "L", "XL"],
+    "discount": 28,
+    "category": "Outerwear",
+    "images": [
+      "https://m.media-amazon.com/images/I/81Xt+8PrxnL._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/81Af3+GYkGL._SX569_.jpg"
+    ],
+    "rating": 4.7,
+    "price": 3499,
+    "stock": 18,
+    "tags": ["blazer", "formal", "officewear", "mensware"]
+  },
+  {
+    "name": "Running Shoes",
+    "description": "Lightweight running shoes with breathable mesh and arch support.",
+    "size": ["7", "8", "9", "10", "11"],
+    "discount": 20,
+    "category": "Footwear",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Hg56EKC3L._SY675_.jpg",
+      "https://m.media-amazon.com/images/I/71E92807NWL._SY695_.jpg",
+      "https://m.media-amazon.com/images/I/713mG84p8jL._SX625_.jpg"
+    ],
+    "rating": 4.5,
+    "price": 1899,
+    "stock": 40,
+    "tags": ["running", "shoes", "activewear", "mensware"]
+  }
+]
