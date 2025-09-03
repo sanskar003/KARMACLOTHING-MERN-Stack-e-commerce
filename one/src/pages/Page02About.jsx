@@ -22,13 +22,11 @@ const Page02About = () => {
         {/* Text */}
         <div className="w-full md:w-1/2 px-4 sm:px-6 md:px-10">
           <p className="text-base sm:text-lg md:text-2xl font-medium font-[title] leading-relaxed">
-            We are a{" "}
-            <span className="font-bold">multidisciplinary design studio</span>{" "}
-            based in Khobar—by "we," I mean just me, haha. As a solopreneur, I
-            handle all aspects of brand building on my own, of course I have to
-            give credit as well to the people that helped me along the way I am
-            forever grateful. In the future, I hope to create a team of MENA
-            creatives who share the same dream...
+            I’m a <span className="font-bold">multidisciplinary designer</span>{" "}
+            working independently to bring ideas to life. I handle every aspect
+            of my projects myself, while always appreciating the people who have
+            supported me along the way. In the future, I hope to collaborate
+            with other creatives who share the same passion and vision...
           </p>
         </div>
       </div>

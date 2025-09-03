@@ -46,9 +46,11 @@ const Page01home = () => {
           <p className='font-[title] text-base sm:text-lg leading-relaxed'>
             We would first like to thank our collaborator on this project, Draphts from Bahrain...
           </p>
+          <Link to={"/clothing"}>
           <button className='button-custom-01 mt-4 self-start'>
             Shop Now
           </button>
+          </Link>
         </div>
 
         {/* Image */}
@@ -64,7 +66,7 @@ const Page01home = () => {
       <div className="divLine"></div>
 
       {/* Third Section */}
-      <div className='thirdContent flex flex-col md:flex-row p-4 gap-6'>
+      <div className='thirdContent flex flex-col justify-center md:flex-row p-4 gap-6'>
         {/* Text & Image */}
         <div className='content3 w-full md:w-1/2 flex flex-col'>
           <h1 className='titleFont text-2xl sm:text-3xl lg:text-4xl'>
@@ -82,14 +84,7 @@ const Page01home = () => {
           </Link>
         </div>
 
-        {/* Image */}
-        <div className='image3 w-full md:w-1/2'>
-          <img
-            className='w-full h-auto object-cover rounded-lg'
-            src="https://i-p.rmcdn.net/6291f44ed8843700356f4748/4900697/image-c73574a1-b4cc-401f-8a70-7602b3195e94.png?w=564&e=webp"
-            alt="Vol.1 & Vol.2 Clothing"
-          />
-        </div>
+      
       </div>
 
     </div>
