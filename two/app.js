@@ -27,7 +27,6 @@ app.use(cors({
   },
   credentials: true
 }));
-app.use(cors({ origin: true, credentials: true }));
 
 // Connect to MongoDB
 console.log("🔌 Attempting MongoDB connection...");
