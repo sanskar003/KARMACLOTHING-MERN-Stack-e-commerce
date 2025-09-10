@@ -34,7 +34,7 @@ console.log("🔌 Attempting MongoDB connection...");
 await connectDB();
 console.log("✅ DB connection complete, starting routes...");
 
-Routes
+// Routes
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running" });
 });
