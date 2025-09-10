@@ -10,7 +10,10 @@ import searchRoutes from "./routes/search.routes.js";
 
 dotenv.config();
 const app = express();
-
+app.get("/", (req, res) => {
+  console.log("📡 / route hit");
+  res.status(200).json({ message: "Backend is running" });
+});
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -38,10 +41,7 @@ console.log("✅ DB connection complete, starting routes...");
 // app.get("/", (req, res) => {
 //   res.json({ message: "Backend is running" });
 // });
-app.get("/", (req, res) => {
-  console.log("📡 / route hit");
-  res.status(200).json({ message: "Backend is running" });
-});
+
 app.use("/auth", authRoutes);
 app.use("/api/personal-info", personalInfoRoutes);
 app.use("/api/cloths/search", searchRoutes);
