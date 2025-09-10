@@ -10,26 +10,23 @@ import searchRoutes from "./routes/search.routes.js";
 
 dotenv.config();
 const app = express();
-app.get("/", (req, res) => {
-  console.log("📡 / route hit");
-  res.status(200).json({ message: "Backend is running" });
-});
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 
 // CORS
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   process.env.FRONTEND_URL
-// ];
-// app.use(cors({
-//   origin: (origin, cb) => {
-//     if (!origin || allowedOrigins.includes(origin)) cb(null, true);
-//     else cb(new Error("Not allowed by CORS"));
-//   },
-//   credentials: true
-// }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL
+];
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+    else cb(new Error("Not allowed by CORS"));
+  },
+  credentials: true
+}));
 app.use(cors({ origin: true, credentials: true }));
 
 // Connect to MongoDB
@@ -37,15 +34,16 @@ console.log("🔌 Attempting MongoDB connection...");
 await connectDB();
 console.log("✅ DB connection complete, starting routes...");
 
-// Routes
-// app.get("/", (req, res) => {
-//   res.json({ message: "Backend is running" });
-// });
+Routes
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running" });
+});
 
 app.use("/auth", authRoutes);
 app.use("/api/personal-info", personalInfoRoutes);
 app.use("/api/cloths/search", searchRoutes);
 app.use("/api/cloths", clothRoutes);
+
 app.use("/productImages", express.static("productImages"));
 app.use("/uploads", express.static("uploads"));
 
