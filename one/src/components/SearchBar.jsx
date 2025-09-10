@@ -1,3 +1,4 @@
+import { API_URL } from "@/config/api";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -29,7 +30,7 @@ const SearchBar = () => {
       setDelayNoResult(false);
       try {
         const result = await axios.get(
-          `http://localhost:5000/api/cloths/search?q=${debouncedQuery}`
+          `${API_URL}/api/cloths/search?q=${debouncedQuery}`
         );
         setSearchResults(Array.isArray(result.data) ? result.data : []);
         setError("");

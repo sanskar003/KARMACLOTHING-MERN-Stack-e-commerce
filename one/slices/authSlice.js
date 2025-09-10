@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { API_URL } from "@/config/api";
 
 // Thunk to update address
 export const updateAddress = createAsyncThunk(
@@ -8,13 +9,13 @@ export const updateAddress = createAsyncThunk(
   async (addressData, { rejectWithValue }) => {
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/personal-info/address",
+        `${API_URL}/api/personal-info/address`,
         { address: addressData },
         {
           withCredentials: true,
           headers: {
-            Authorization: `Bearer ${Cookies.get("token")}`
-          }
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
         }
       );
       return res.data.address;
@@ -28,7 +29,7 @@ const initialState = {
   token: Cookies.get("token") || "",
   user: Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null,
   status: "idle",
-  error: null
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -58,7 +59,7 @@ const authSlice = createSlice({
     },
     registerFailure(state, action) {
       state.error = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,7 +78,7 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       });
-  }
+  },
 });
 
 export const {
@@ -85,7 +86,7 @@ export const {
   loginFailure,
   logout,
   registerSuccess,
-  registerFailure
+  registerFailure,
 } = authSlice.actions;
 
 export default authSlice.reducer;

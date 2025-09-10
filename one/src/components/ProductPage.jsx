@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import CustomToast from "./CustomToast";
 import { addToCart } from "../../slices/cartSlice";
+import { API_URL } from "@/config/api";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ export default function ProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/cloths/${id}`);
+        const res = await axios.get(`${API_URL}/api/cloths/${id}`);
         setProduct(res.data);
         setSelectedImage(res.data.images?.[0]);
       } catch (err) {
@@ -43,8 +44,6 @@ export default function ProductPage() {
       toast.error("Please select a size.");
       return;
     }
-
-
 
     const cartItem = { ...product, size };
     dispatch(addToCart({ userId, cartItem }));

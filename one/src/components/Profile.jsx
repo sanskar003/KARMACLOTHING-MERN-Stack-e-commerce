@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import AuthStatus from "./AuthStatus";
 import { Link } from "react-router-dom";
+import { API_URL } from "@/config/api";
 
 const Profile = () => {
   const user = useSelector((state) => state.auth.user);
@@ -33,7 +34,7 @@ const Profile = () => {
             {user.avatar ? (
               <img
                 className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-50 md:h-50 object-cover my-6"
-                src={`http://localhost:5000${user.avatar}`}
+                src={`${API_URL}${user.avatar}`}
                 alt="Avatar"
               />
             ) : (
@@ -49,7 +50,8 @@ const Profile = () => {
               {/* Username + Email */}
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                  <span className="text-zinc-500">username</span> : {user.username}
+                  <span className="text-zinc-500">username</span> :{" "}
+                  {user.username}
                 </p>
                 <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
                   <span className="text-zinc-500">email</span> : {user.email}
@@ -61,25 +63,30 @@ const Profile = () => {
                 <>
                   <div className="flex justify-center">
                     <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                      <span className="text-zinc-500">street</span> : {user.address.street}
+                      <span className="text-zinc-500">street</span> :{" "}
+                      {user.address.street}
                     </p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                      <span className="text-zinc-500">city</span> : {user.address.city}
+                      <span className="text-zinc-500">city</span> :{" "}
+                      {user.address.city}
                     </p>
                     <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                      <span className="text-zinc-500">state</span> : {user.address.state}
+                      <span className="text-zinc-500">state</span> :{" "}
+                      {user.address.state}
                     </p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                      <span className="text-zinc-500">zip code</span> : {user.address.zipcode}
+                      <span className="text-zinc-500">zip code</span> :{" "}
+                      {user.address.zipcode}
                     </p>
                     <p className="text-lg sm:text-2xl md:text-3xl border-b-2 border-amber-500 px-2 py-1 rounded text-center">
-                      <span className="text-zinc-500">phone no</span> : {user.address.phone}
+                      <span className="text-zinc-500">phone no</span> :{" "}
+                      {user.address.phone}
                     </p>
                   </div>
                 </>

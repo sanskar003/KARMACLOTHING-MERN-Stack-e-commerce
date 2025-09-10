@@ -21,21 +21,32 @@ router.post(
   registerValidator,
   handleValidation,
   async (req, res) => {
-    const { username, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const avatarPath = req.file ? `/uploads/${req.file.filename}` : null;
+    try {
+      const { username, email, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const avatarPath = req.file ? `/uploads/${req.file.filename}` : null;
 
-    const user = new User({ username, email, password: hashedPassword, avatar: avatarPath });
-    await user.save();
+      const user = new User({ username, email, password: hashedPassword, avatar: avatarPath });
+      await user.save();
 
-    const token = jwt.sign(
-      { userId: user._id, email: user.email },
-      process.env.SECRET_KEY,
-      { expiresIn: "1h" }
-    );
+      const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        process.env.SECRET_KEY,
+        { expiresIn: "1h" }
+      );
 
-    res.cookie("token", token, { httpOnly: true, secure: true, maxAge: 3600000 });
-    res.json({ message: "User Created Successfully", token, user });
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+        sameSite: "none", // allow cross-site cookies
+        maxAge: 3600000
+      });
+
+      res.json({ message: "User Created Successfully", token, user });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
   }
 );
 
@@ -45,26 +56,37 @@ router.post(
   loginValidator,
   handleValidation,
   async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(404).json({ message: "Invalid username or password" });
+      if (!user) {
+        return res.status(404).json({ message: "Invalid username or password" });
+      }
+
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: "Invalid username or password" });
+      }
+
+      const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        process.env.SECRET_KEY,
+        { expiresIn: "1h" }
+      );
+
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "none",
+        maxAge: 3600000
+      });
+
+      res.json({ message: "Logged in successfully", token, user });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
     }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
-
-    const token = jwt.sign(
-      { userId: user._id, email: user.email },
-      process.env.SECRET_KEY,
-      { expiresIn: "1h" }
-    );
-
-    res.cookie("token", token, { httpOnly: true, secure: true, maxAge: 3600000 });
-    res.json({ message: "Logged in successfully", token, user });
   }
 );
 

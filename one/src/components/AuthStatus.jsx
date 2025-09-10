@@ -16,14 +16,17 @@ const AuthStatus = () => {
       {isLoggedIn ? (
         <>
           {/* <p>{user?.username}</p>
-          <p>{user?.avatar && <img src={`http://localhost:5000${user.avatar}`}  alt="Avatar" width="50" height="50" />}</p> */}
+          <p>{user?.avatar && <img src={`${API_URL}${user.avatar}`}  alt="Avatar" width="50" height="50" />}</p> */}
           <button
-          className="rounded p-1 transition duration-300 ease-in-out  hover:bg-red-300  hover:text-zinc-500  hover:rounded-4xl  hover:shadow-lg active:scale-95" 
-          onClick={handleLogout}>
-            <img 
-            title="Logout"
-            className="w-10 h-10 object-cover"
-            src="https://img.icons8.com/?size=100&id=j8vtslxN0LJo&format=png&color=000000" alt="logout" />
+            className="rounded p-1 transition duration-300 ease-in-out  hover:bg-red-300  hover:text-zinc-500  hover:rounded-4xl  hover:shadow-lg active:scale-95"
+            onClick={handleLogout}
+          >
+            <img
+              title="Logout"
+              className="w-10 h-10 object-cover"
+              src="https://img.icons8.com/?size=100&id=j8vtslxN0LJo&format=png&color=000000"
+              alt="logout"
+            />
           </button>
         </>
       ) : (

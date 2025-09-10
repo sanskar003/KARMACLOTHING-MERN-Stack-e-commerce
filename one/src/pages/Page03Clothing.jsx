@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCloths } from "../../slices/clothSlice";
 import { addToCart } from "../../slices/cartSlice";
@@ -8,10 +8,13 @@ import ImageSlider from "@/components/ImageSlider";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import { Link } from "react-router-dom";
+import Filter from "@/components/Filter";
+import Loading from "@/components/Loading";
 
 const Page03Clothing = () => {
+  const [showLoader, setShowLoader] = useState(false);
   const dispatch = useDispatch();
-  const { cloths, loading, error, totalPages } = useSelector(
+  const { cloths, loading, error, totalPages, filters } = useSelector(
     (state) => state.cloths
   );
   const user = useSelector((state) => state.auth.user);
@@ -23,9 +26,8 @@ const Page03Clothing = () => {
   const limit = 10;
 
   useEffect(() => {
-    dispatch(fetchCloths({ page, limit }));
-    window.scrollTo({ top: 0 });
-  }, [dispatch, page]);
+    dispatch(fetchCloths({ page, limit, ...filters }));
+  }, [dispatch, page, filters]);
 
   useEffect(() => {
     document.body.style.overflow = fullscreenImages ? "hidden" : "auto";
@@ -38,6 +40,17 @@ const Page03Clothing = () => {
       document.body.style.overflow = "auto";
     };
   }, [fullscreenImages]);
+
+  useEffect(() => {
+    let timeout;
+    if (loading) {
+      setShowLoader(true); // show immediately when loading starts
+    } else {
+      // wait 300ms before hiding to prevent flicker
+      timeout = setTimeout(() => setShowLoader(false), 300);
+    }
+    return () => clearTimeout(timeout);
+  }, [loading]);
 
   const handleAddToCart = (product) => {
     if (!user) {
@@ -70,13 +83,15 @@ const Page03Clothing = () => {
   };
 
   return (
-    <div className="pageStructure font-[title]">
-      {loading && <p>Loading...........</p>}
+    <div className="pageStructure font-[title] ">
+      <Filter />
+
+      <div className="main p-4 sm:p-5 relative">
+      {showLoader  && <Loading />}
       {error && <p>{error}</p>}
 
-      <div className="main p-4 sm:p-5">
         <SearchBar />
-
+        
         {cloths.map((cloth) => (
           <React.Fragment key={cloth._id}>
             <div className="relative flex flex-col md:flex-row justify-center items-center gap-6 md:gap-0">
