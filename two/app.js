@@ -15,10 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// Allow both local dev and production frontend
+// CORS
 const allowedOrigins = [
   "http://localhost:5173",
-  process.env.FRONTEND_URL // e.g., https://your-frontend.vercel.app
+  process.env.FRONTEND_URL
 ];
 app.use(cors({
   origin: (origin, cb) => {
@@ -32,6 +32,9 @@ app.use(cors({
 connectDB();
 
 // Routes
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running" });
+});
 app.use("/auth", authRoutes);
 app.use("/api/personal-info", personalInfoRoutes);
 app.use("/api/cloths/search", searchRoutes);
@@ -39,5 +42,9 @@ app.use("/api/cloths", clothRoutes);
 app.use("/productImages", express.static("productImages"));
 app.use("/uploads", express.static("uploads"));
 
-// Export the app for Vercel serverless
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
 export default app;
