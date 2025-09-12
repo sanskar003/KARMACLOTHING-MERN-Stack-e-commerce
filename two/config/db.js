@@ -17,7 +17,7 @@ const connectDB = async () => {
 
     // Force the DB name to karmaClothing even if it's missing from the URI
     const db = await mongoose.connect(uri, {
-      dbName: "karmaClothing"
+      dbName: "karmaCothing"
     });
 
     isConnected = db.connections[0].readyState === 1;
