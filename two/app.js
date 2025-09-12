@@ -12,6 +12,14 @@ import searchRoutes from "./routes/search.routes.js";
 dotenv.config();
 const app = express();
 
+
+// 🚫 Ignore favicon requests before anything else
+app.get(['/favicon.ico', '/favicon.png'], (req, res) => {
+  res.status(204).end(); // No Content
+});
+
+
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
