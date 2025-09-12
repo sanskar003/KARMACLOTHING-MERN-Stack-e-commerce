@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const clothSchema = new mongoose.Schema({
+const clothSchema = new mongoose.Schema(
+  {
   name: { type: String, required: true },
   images: [{ type: String, required: true }],
   price: { type: Number, required: true },
@@ -10,9 +11,10 @@ const clothSchema = new mongoose.Schema({
   category: String,
   rating: Number,
   stock: Number,
-  tags: [String]
-
-});
+  tags: [String],
+},
+ { collection: "cloths" } 
+);
 
 const Cloth = mongoose.model("Cloth", clothSchema);
 export default Cloth;

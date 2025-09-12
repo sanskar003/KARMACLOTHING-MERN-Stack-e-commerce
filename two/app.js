@@ -28,10 +28,12 @@ app.use(cors({
   credentials: true
 }));
 
+
 // Connect to MongoDB
 console.log("🔌 Attempting MongoDB connection...");
-await connectDB();
+await connectDB();  
 console.log("✅ DB connection complete, starting routes...");
+
 
 // Routes
 app.get("/", (req, res) => {

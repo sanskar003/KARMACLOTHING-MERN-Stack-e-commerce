@@ -4,6 +4,8 @@ import Cloth from "../models/cloths.model.js";
 
 const router = express.Router();
 
+
+
 // ✅ Get all categories
 router.get("/categories", async (req, res) => {
   try {
