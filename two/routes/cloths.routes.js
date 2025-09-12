@@ -4,18 +4,6 @@ import Cloth from "../models/cloths.model.js";
 
 const router = express.Router();
 
-// Routes
-router.get("/", async (req, res) => {
-  console.log("📥 Incoming request to /");
-  try {
-    const data = await Cloth.find({});
-    console.log("📦 Found docs:", data.length);
-    res.json(data);
-  } catch (err) {
-    console.error("❌ Error in / route:", err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
 
 // ✅ Get all categories
 router.get("/categories", async (req, res) => {

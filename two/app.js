@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
+
 import clothRoutes from "./routes/cloths.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import personalInfoRoutes from "./routes/personalInfo.routes.js";
@@ -28,12 +29,16 @@ app.use(cors({
   credentials: true
 }));
 
-
-// Connect to MongoDB
-console.log("🔌 Attempting MongoDB connection...");
-await connectDB();  
-console.log("✅ DB connection complete, starting routes...");
-
+// DB connection middleware (runs once per cold start)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error("DB connection error:", err);
+    res.status(500).json({ error: "Database connection failed" });
+  }
+});
 
 // Routes
 app.get("/", (req, res) => {
