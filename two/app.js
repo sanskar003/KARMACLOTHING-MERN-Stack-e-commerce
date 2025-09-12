@@ -36,16 +36,8 @@ console.log("✅ DB connection complete, starting routes...");
 
 
 // Routes
-app.get("/", async (req, res) => {
-  console.log("📥 Incoming request to /");
-  try {
-    const data = await Cloth.find({});
-    console.log("📦 Found docs:", data.length);
-    res.json(data);
-  } catch (err) {
-    console.error("❌ Error in / route:", err);
-    res.status(500).json({ error: "Server error" });
-  }
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running" });
 });
 
 app.use("/auth", authRoutes);
