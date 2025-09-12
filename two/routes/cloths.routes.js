@@ -5,7 +5,7 @@ import Cloth from "../models/cloths.model.js";
 const router = express.Router();
 
 // Routes
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   console.log("📥 Incoming request to /");
   try {
     const data = await Cloth.find({});
