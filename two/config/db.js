@@ -15,15 +15,18 @@ const connectDB = async () => {
     const uri = process.env.MONGO_URI;
     if (!uri) throw new Error("MONGO_URI is undefined! Check your .env file.");
 
-    // Force the DB name to karmaClothing even if it's missing from the URI
+    // Force the DB name to the actual current one in Atlas
     const db = await mongoose.connect(uri, {
       dbName: "karmaCothing"
     });
 
     isConnected = db.connections[0].readyState === 1;
 
-    console.log("✅ MongoDB Connected Successfully!");
-    console.log("Connected to DB:", mongoose.connection.db?.databaseName || "Unknown");
+    // Wait until the connection is fully open before logging DB name
+    mongoose.connection.once("open", () => {
+      console.log("✅ MongoDB Connected Successfully!");
+      console.log("Connected to DB:", mongoose.connection.db.databaseName);
+    });
 
     return mongoose.connection;
   } catch (error) {
