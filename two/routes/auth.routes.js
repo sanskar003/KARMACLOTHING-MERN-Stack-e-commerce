@@ -18,7 +18,7 @@ router.use(cookieParser());
 // REGISTER
 router.post(
   "/register",
-  uploads.single("avatar"),
+  uploads.single("Avatar"),
   registerValidator,
   handleValidation,
   async (req, res) => {

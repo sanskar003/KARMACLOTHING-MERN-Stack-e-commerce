@@ -35,8 +35,8 @@ const Register = () => {
       formData.append("username", values.username);
       formData.append("email", values.email);
       formData.append("password", values.password);
-      if (values.avatar) {
-        formData.append("avatar", values.avatar);
+      if (values.Avatar) {
+        formData.append("Avatar", values.Avatar);
       }
 
       const data = await registerUser(formData);
@@ -120,13 +120,13 @@ const Register = () => {
                   <input
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
-                    onChange={(e) => setFieldValue("avatar", e.target.files[0])}
+                    onChange={(e) => setFieldValue("Avatar", e.target.files[0])}
                     className="bg-transparent p-2 w-full border-b-2 sm:border-b-3 border-dotted border-zinc-600"
                   />
                   {/* Optional preview */}
-                  {values.avatar && (
+                  {values.Avatar && (
                     <img
-                      src={URL.createObjectURL(values.avatar)}
+                      src={URL.createObjectURL(values.Avatar)}
                       alt="Preview"
                       className="mt-2 h-20 w-20 object-cover rounded-full"
                     />
