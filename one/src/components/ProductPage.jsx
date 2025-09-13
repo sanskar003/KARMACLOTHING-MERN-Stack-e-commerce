@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import CustomToast from "./CustomToast";
 import { addToCart } from "../../slices/cartSlice";
 import { API_URL } from "@/config/api";
+import Loading from "./Loading";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -31,7 +32,9 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
-  if (!product) return <p className="text-center mt-10">Loading...</p>;
+  if (!product) return <p className="text-center mt-10">
+    <Loading/>
+  </p>;
 
   const handleAddToCart = () => {
     if (!user) {
