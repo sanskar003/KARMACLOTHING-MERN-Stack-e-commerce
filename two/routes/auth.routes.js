@@ -8,6 +8,7 @@ import uploads from "../middlewares/uploads.middleware.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 import { registerValidator, loginValidator } from "../middlewares/validator.middleware.js";
 import { handleValidation } from "../middlewares/validationResult.middleware.js";
+import supabase from "../config/supabaseClient.js";
 
 dotenv.config();
 const router = express.Router();
