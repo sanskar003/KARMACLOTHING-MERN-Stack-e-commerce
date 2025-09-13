@@ -34,7 +34,7 @@ const Profile = () => {
             {user.avatar ? (
               <img
                 className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-50 md:h-50 object-cover my-6"
-                src={`${API_URL}${user.avatar}`}
+                src={user.avatar}
                 alt="Avatar"
               />
             ) : (
