@@ -34,7 +34,7 @@ router.post(
         // Upload to Supabase private bucket
         const { error: uploadError } = await supabase
           .storage
-          .from("avatars")
+          .from("Avatar")
           .upload(fileName, req.file.buffer, {
             contentType: req.file.mimetype
           });
@@ -44,7 +44,7 @@ router.post(
         // Create signed URL (valid for 1 year)
         const { data: signedData, error: signedError } = await supabase
           .storage
-          .from("avatars")
+          .from("Avatar")
           .createSignedUrl(fileName, 60 * 60 * 24 * 365);
 
         if (signedError) throw signedError;
