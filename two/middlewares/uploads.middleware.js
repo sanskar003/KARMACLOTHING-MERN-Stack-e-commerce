@@ -1,15 +1,18 @@
-import multer from "multer"
-import path from "path"
+// middleware/uploads.js
+import multer from "multer";
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/")
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+const uploads = multer({
+  storage: multer.memoryStorage(), // keep file in memory
+  fileFilter: (req, file, cb) => {
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only JPEG, PNG, and WebP images are allowed"));
     }
-})
-
-const uploads = multer({ storage })
+  },
+  limits: { fileSize: 2 * 1024 * 1024 } // 2 MB limit
+});
 
 export default uploads;

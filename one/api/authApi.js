@@ -13,10 +13,10 @@ export const loginUser = async (credential) => {
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/auth/register`, userData, {
-      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true // so cookies from backend are stored
     });
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    throw error.response?.data || { message: "Registration failed" };
   }
 };

@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer className="pageStructure py-6 border-b-4 border-t-2">
-      <ul className="flex flex-col md:flex-row justify-evenly items-center gap-4 md:gap-0 text-lg sm:text-2xl md:text-3xl font-[navHead]">
+      <ul className="flex flex-col md:flex-row justify-evenly items-center gap-4 md:gap-0 text-lg sm:text-2xl md:text-3xl font-[navHead] mx-2">
         {footerLinks.map((link, index) => (
           <li
             key={index}

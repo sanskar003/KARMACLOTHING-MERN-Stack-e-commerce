@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import uplode from "../middlewares/uploads.middleware.js";
+import uploads from "../middlewares/uploads.middleware.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 import { registerValidator, loginValidator } from "../middlewares/validator.middleware.js";
 import { handleValidation } from "../middlewares/validationResult.middleware.js";
@@ -17,16 +17,47 @@ router.use(cookieParser());
 // REGISTER
 router.post(
   "/register",
-  uplode.single("avatar"),
+  uploads.single("avatar"),
   registerValidator,
   handleValidation,
   async (req, res) => {
     try {
       const { username, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const avatarPath = req.file ? `/uploads/${req.file.filename}` : null;
 
-      const user = new User({ username, email, password: hashedPassword, avatar: avatarPath });
+      let avatarUrl = null;
+
+      if (req.file) {
+        const fileName = `${Date.now()}-${req.file.originalname}`;
+
+        // Upload to Supabase private bucket
+        const { error: uploadError } = await supabase
+          .storage
+          .from("avatars")
+          .upload(fileName, req.file.buffer, {
+            contentType: req.file.mimetype
+          });
+
+        if (uploadError) throw uploadError;
+
+        // Create signed URL (valid for 1 year)
+        const { data: signedData, error: signedError } = await supabase
+          .storage
+          .from("avatars")
+          .createSignedUrl(fileName, 60 * 60 * 24 * 365);
+
+        if (signedError) throw signedError;
+
+        avatarUrl = signedData.signedUrl;
+      }
+
+      const user = new User({
+        username,
+        email,
+        password: hashedPassword,
+        avatar: avatarUrl
+      });
+
       await user.save();
 
       const token = jwt.sign(
@@ -37,18 +68,20 @@ router.post(
 
       res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // HTTPS only in prod
-        sameSite: "none", // allow cross-site cookies
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "none",
         maxAge: 3600000
       });
 
       res.json({ message: "User Created Successfully", token, user });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: "Server error" });
+      res.status(500).json({ message: "Server error", error: err.message });
     }
   }
 );
+
+
 
 // LOGIN
 router.post(
