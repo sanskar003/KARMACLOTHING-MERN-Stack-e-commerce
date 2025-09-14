@@ -1,4 +1,6 @@
-LIVE : https://karmaclothing.vercel.app/
+## 🌐 Live Demo
+
+Check out the live site here: [Karma Clothing](https://karmaclothing.vercel.app/)
 
 # 🛍️ MERN Stack E‑Commerce App
 
