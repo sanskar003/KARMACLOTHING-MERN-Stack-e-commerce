@@ -1,3 +1,5 @@
+LIVE : https://karmaclothing.vercel.app/
+
 # 🛍️ MERN Stack E‑Commerce App
 
 A full‑stack e‑commerce web application built with the **MERN** stack — **MongoDB**, **Express.js**, **React**, and **Node.js** — featuring user authentication, product browsing, product details and cart management
